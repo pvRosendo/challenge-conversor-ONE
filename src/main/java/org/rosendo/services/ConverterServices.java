@@ -1,16 +1,24 @@
 package org.rosendo.services;
 
+import org.rosendo.models.ConverterModel;
+
 import java.util.Scanner;
 
-public class ConverterServices {
+public class ConverterServices extends ConverterModel {
 
-    private int previousValue;
-    private int valueConverted;
+    public ConverterServices() {
+        Scanner userValue = new Scanner(System.in);
+        previousValue = userValue.nextInt();
+    }
 
-    public Integer converter(){
-        var userValue = new Scanner(System.in);
+    public Integer converterFunction(){
+
+        //TODO: add the set base code
+        //TODO: add the set target code
+        //TODO: add the set amount
+        //TODO: return the converted value
 
 
-        return 0;
+        return getConvertedValue();
     }
 }
