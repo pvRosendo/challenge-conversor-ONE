@@ -1,19 +1,37 @@
 package org.rosendo.controller;
 
-import org.rosendo.configs.WebConfigs;
+
+import com.google.gson.Gson;
+import org.rosendo.configs.ConversionRates;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-public class ConverterController extends WebConfigs {
+import static org.rosendo.configs.WebConfigs.LINK_API;
 
-    public URL url = new URL(LINK_API);
-    public HttpURLConnection request;
+public class ConverterController {
 
-    public ConverterController() throws IOException {
-        request = (HttpURLConnection) url.openConnection();
-        request.connect();
+    HttpClient client = HttpClient.newHttpClient();
+
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(LINK_API))
+            .build();
+
+    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+    Gson gson = new Gson();
+
+    String json = response.body();
+
+    ConversionRates conversionRates = gson.fromJson(json, ConversionRates.class);
+
+    public ConverterController() throws IOException, InterruptedException {
+        System.out.println(response.body());
+        System.out.println("----------------------");
+        System.out.println(conversionRates);
     }
 
 }
