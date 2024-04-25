@@ -4,58 +4,57 @@ import com.google.gson.annotations.SerializedName;
 
 public class ConverterModel {
 
-    protected int previousValue;
+    private Integer amount;
 
     @SerializedName("conversion_result")
-    protected int convertedValue;
+    private Integer convertedValue;
 
     @SerializedName("conversion_rate")
-    protected int quotation;
+    private Integer quotation;
 
-    @SerializedName("base_code")
-    protected int baseCode;
+    //@SerializedName("base_code")
+    private String baseCode;
 
-    @SerializedName("target_code")
-    protected int targetCode;
+    //@SerializedName("target_code")
+    private String targetCode;
 
-
-    public int getPreviousValue() {
-        return previousValue;
+    public Integer getAmount() {
+        return amount;
     }
 
-    public void setPreviousValue(int previousValue) {
-        this.previousValue = previousValue;
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
-    public int getConvertedValue() {
+    public Integer getConvertedValue() {
         return convertedValue;
     }
 
-    public void setConvertedValue(int convertedValue) {
+    public void setConvertedValue(Integer convertedValue) {
         this.convertedValue = convertedValue;
     }
 
-    public int getQuotation() {
+    public Integer getQuotation() {
         return quotation;
     }
 
-    public void setQuotation(int quotation) {
+    public void setQuotation(Integer quotation) {
         this.quotation = quotation;
     }
 
-    public int getBaseCode() {
+    public String getBaseCode() {
         return baseCode;
     }
 
-    public void setBaseCode(int baseCode) {
+    public void setBaseCode(String baseCode) {
         this.baseCode = baseCode;
     }
 
-    public int getTargetCode() {
+    public String getTargetCode() {
         return targetCode;
     }
 
-    public void setTargetCode(int targetCode) {
+    public void setTargetCode(String targetCode) {
         this.targetCode = targetCode;
     }
 }

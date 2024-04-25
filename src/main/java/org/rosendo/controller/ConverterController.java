@@ -1,8 +1,6 @@
 package org.rosendo.controller;
 
-
-import com.google.gson.Gson;
-import org.rosendo.configs.WebConfigs;
+import org.rosendo.services.ConverterServices;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,25 +9,34 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 
-public class ConverterController extends WebConfigs{
+public class ConverterController extends ConverterServices {
 
-    HttpClient client = HttpClient.newHttpClient();
+//        ConverterResponse responseJson = gson.fromJson(response.body(), ConverterResponse.class);
+//        converterModel.setConvertedValue(responseJson.conversion_result());
+//        converterModel.setQuotation(responseJson.conversion_rate());
+//        System.out.printf("ResponseJson complete%s%n", responseJson);
+//        System.out.printf("Quotation%d%n", responseJson.conversion_result());
+//        System.out.printf("Converted value%d%n", responseJson.conversion_rate());
+//        Gson gson = new Gson();
 
-    HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(LINK_API_CONVERTER))
-            .build();
+    String KEY_API = "429b8afc731718423f837e6a";
 
-    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    URI LINK_API_CONVERTER = URI.create("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%d"
+            .formatted(KEY_API, converterModel.getBaseCode(), converterModel.getTargetCode(), converterModel.getAmount()));
 
-    Gson gson = new Gson();
+    HttpClient client;
 
-    String json = response.body();
+    public ConverterController(){
+        client = HttpClient.newHttpClient();
+    }
 
-//    ConversionRates responseJson = gson.fromJson(json, ConversionRates.class);
+    public void controllerRequest() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(LINK_API_CONVERTER)
+                .build();
 
-    public ConverterController() throws IOException, InterruptedException {
-        System.out.println(response.body());
-        System.out.println("----------------------");
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
     }
 
 }
