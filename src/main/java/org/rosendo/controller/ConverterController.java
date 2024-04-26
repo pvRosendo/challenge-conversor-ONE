@@ -1,5 +1,6 @@
 package org.rosendo.controller;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.rosendo.models.ConverterModel;
@@ -40,7 +41,9 @@ public class ConverterController extends ConverterServices {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            Gson gson = new GsonBuilder().create();
+            Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                    .create();
 
             String json = response.body();
 
@@ -48,33 +51,32 @@ public class ConverterController extends ConverterServices {
 
             ConverterResponse responseJson = gson.fromJson(json, ConverterResponse.class);
 
-            converterModel.setConvertedValue(responseJson.conversion_result());
-            converterModel.setQuotation(responseJson.conversion_rate());
+            converterModel.setConvertedValue(responseJson.conversionResult());
+            converterModel.setQuotation(responseJson.conversionRate());
 
-            System.out.printf("Quotation: %s%n", responseJson.conversion_result());
-            System.out.printf("Converted value: %s%n", responseJson.conversion_rate());
+            System.out.println("====================================================================");
+            System.out.printf("The value %s of %s in the current exchange of %s currency becomes: %s%n",
+                    converterServices.getUserValueAmount(),
+                    converterServices.getUserValueBaseCode(),
+                    converterServices.getUserValueTargetCode(),
+                    responseJson.conversionResult()
+            );
+            System.out.println("====================================================================");
 
+            System.out.println("\n////////////////////////////////////////////////////////////////////");
+
+            System.out.println("\n====================================================================");
+            System.out.println("For more information, the quotation and converted value is below: ");
+
+            System.out.printf("\nQuotation: %s%n", responseJson.conversionRate());
+            System.out.printf("\nConverted value: %s%n", responseJson.conversionResult());
+
+            System.out.println("====================================================================");
 
         } catch (IOException | InterruptedException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.printf("Error: %s%n", e.getMessage());
             throw new RuntimeException(e);
         }
-        System.out.println(LINK_API_CONVERTER);
-    }
-
-    public void controllerRequest() throws IOException, InterruptedException {
-
-//        System.out.println("inicio");
-//        System.out.println(converterModel.getBaseCode());
-//        System.out.println(converterModel.getTargetCode());
-//        System.out.println(converterModel.getAmount());
-
-
-
-//        System.out.println("----------depois do request-----------");
-//        System.out.println(converterModel.getBaseCode());
-//        System.out.println(converterModel.getTargetCode());
-//        System.out.println(converterModel.getAmount());
     }
 
 }

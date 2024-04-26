@@ -28,14 +28,22 @@ public class ConverterServices {
 
 
     private void setUserValueAmount(){
-        System.out.println("What value do you want to convert");
+        System.out.println("\nWhat value do you want to convert?");
         Scanner lectureAmount = new Scanner(System.in);
         userValueAmount = lectureAmount.nextDouble();
 
     }
 
     private void setUserValueBaseCode(){
-        System.out.println("Entry with the code base: ");
+        System.out.println(
+                """
+
+                ===================================================
+                Entry with the code base (just number is accepted!):
+                ===================================================
+                """
+        );
+
         Scanner lecture = new Scanner(System.in);
         int lectureBaseCode = lecture.nextInt();
 
@@ -71,7 +79,15 @@ public class ConverterServices {
     }
 
     private void setUserValueTargetCode(){
-        System.out.println("Now entry with the target code: ");
+        System.out.println(
+                """
+
+                ===================================================
+                Entry with the target code (just number is accepted!):
+                ===================================================
+                """
+        );
+
         Scanner lecture = new Scanner(System.in);
         int lectureTargetCode = lecture.nextInt();
 
