@@ -1,6 +1,7 @@
 package org.rosendo.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.rosendo.models.ConverterModel;
 import org.rosendo.models.ConverterResponse;
 import org.rosendo.services.ConverterServices;
@@ -23,7 +24,7 @@ public class ConverterController extends ConverterServices {
 
         client = HttpClient.newHttpClient();
 
-        URI LINK_API_CONVERTER = URI.create("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%.2f"
+        URI LINK_API_CONVERTER = URI.create("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%.0f"
                 .formatted(
                         KEY_API,
                         converterServices.getUserValueBaseCode(),
@@ -38,17 +39,22 @@ public class ConverterController extends ConverterServices {
 
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            Gson gson = new Gson();
+
+            Gson gson = new GsonBuilder().create();
+
+            String json = response.body();
 
             ConverterModel converterModel = new ConverterModel();
 
-            ConverterResponse responseJson = gson.fromJson(response.body(), ConverterResponse.class);
+            ConverterResponse responseJson = gson.fromJson(json, ConverterResponse.class);
 
             converterModel.setConvertedValue(responseJson.conversion_result());
             converterModel.setQuotation(responseJson.conversion_rate());
-            System.out.printf("ResponseJson complete%s%n", responseJson);
-            System.out.printf("Quotation%.4f", responseJson.conversion_result());
-            System.out.printf("Converted value%.2f", responseJson.conversion_rate());
+
+            System.out.printf("Quotation: %s%n", responseJson.conversion_result());
+            System.out.printf("Converted value: %s%n", responseJson.conversion_rate());
+
+
         } catch (IOException | InterruptedException e) {
             System.out.println("Error: " + e.getMessage());
             throw new RuntimeException(e);

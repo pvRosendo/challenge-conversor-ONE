@@ -24,13 +24,6 @@ public class ConverterServices {
                 userValueTargetCode,
                 userValueAmount
         );
-
-        System.out.printf("baseCode: %s targetCode: %s amount: %.2f",
-                converterModel.getBaseCode(),
-                converterModel.getTargetCode(),
-                converterModel.getAmount()
-        );
-
     }
 
 
