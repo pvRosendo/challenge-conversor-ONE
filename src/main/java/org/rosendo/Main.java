@@ -6,14 +6,8 @@ import org.rosendo.services.ConverterServices;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        ConverterServices converterService = new ConverterServices();
+    public static void main(String[] args) {
         ConverterController converterController = new ConverterController();
-
-        converterService.converterFunction();
-        converterController.controllerRequest();
-
     }
 
 }

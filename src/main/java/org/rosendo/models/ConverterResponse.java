@@ -1,7 +1,7 @@
 package org.rosendo.models;
 
 public record ConverterResponse(
-        Integer conversion_rate,
-        Integer conversion_result
+        Double conversion_rate,
+        Double conversion_result
 ) {
 }

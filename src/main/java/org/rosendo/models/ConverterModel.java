@@ -4,41 +4,46 @@ import com.google.gson.annotations.SerializedName;
 
 public class ConverterModel {
 
-    private Integer amount;
+    public Double amount;
 
     @SerializedName("conversion_result")
-    private Integer convertedValue;
+    private Double convertedValue;
 
     @SerializedName("conversion_rate")
-    private Integer quotation;
+    private Double quotation;
 
-    //@SerializedName("base_code")
-    private String baseCode;
+    public String baseCode;
+    public String targetCode;
 
-    //@SerializedName("target_code")
-    private String targetCode;
-
-    public Integer getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Integer amount) {
+    public ConverterModel(String baseCode, String targetCode, Double amount) {
+        this.baseCode = baseCode;
+        this.targetCode = targetCode;
         this.amount = amount;
     }
 
-    public Integer getConvertedValue() {
+    public ConverterModel() {}
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public Double getConvertedValue() {
         return convertedValue;
     }
 
-    public void setConvertedValue(Integer convertedValue) {
+    public void setConvertedValue(Double convertedValue) {
         this.convertedValue = convertedValue;
     }
 
-    public Integer getQuotation() {
+    public Double getQuotation() {
         return quotation;
     }
 
-    public void setQuotation(Integer quotation) {
+    public void setQuotation(Double quotation) {
         this.quotation = quotation;
     }
 

@@ -1,15 +1,14 @@
 package org.rosendo.services;
 
-import org.rosendo.controller.ConverterController;
 import org.rosendo.models.ConverterModel;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class ConverterServices {
 
-
-    protected ConverterModel converterModel = new ConverterModel();
+    protected String userValueBaseCode;
+    protected String userValueTargetCode;
+    protected Double userValueAmount;
 
 
     public void converterFunction() {
@@ -20,7 +19,13 @@ public class ConverterServices {
         setUserValueTargetCode();
         setUserValueAmount();
 
-        System.out.printf("baseCode: %s targetCode: %s amount: %d%n",
+        var converterModel = new ConverterModel(
+                userValueBaseCode,
+                userValueTargetCode,
+                userValueAmount
+        );
+
+        System.out.printf("baseCode: %s targetCode: %s amount: %.2f",
                 converterModel.getBaseCode(),
                 converterModel.getTargetCode(),
                 converterModel.getAmount()
@@ -32,38 +37,38 @@ public class ConverterServices {
     private void setUserValueAmount(){
         System.out.println("What value do you want to convert");
         Scanner lectureAmount = new Scanner(System.in);
-        converterModel.setAmount(lectureAmount.nextInt());
+        userValueAmount = lectureAmount.nextDouble();
 
     }
 
     private void setUserValueBaseCode(){
         System.out.println("Entry with the code base: ");
-        Scanner lectureBaseCode = new Scanner(System.in);
-        int userValueBaseCode = lectureBaseCode.nextInt();
+        Scanner lecture = new Scanner(System.in);
+        int lectureBaseCode = lecture.nextInt();
 
-        switch(userValueBaseCode){
+        switch(lectureBaseCode){
             case 1:
-                converterModel.setBaseCode("ARS");
+                userValueBaseCode = "ARS";
                 System.out.println("Chosen ARS");
                 break;
             case 2:
-                converterModel.setBaseCode("BOB");
+                userValueBaseCode = "BOB";
                 System.out.println("Chosen BOB");
                 break;
             case 3:
-                converterModel.setBaseCode("BRL");
+                userValueBaseCode = "BRL";
                 System.out.println("Chosen BRL");
                 break;
             case 4:
-                converterModel.setBaseCode("CLP");
+                userValueBaseCode = "CLP";
                 System.out.println("Chosen CLP");
                 break;
             case 5:
-                converterModel.setBaseCode("COP");
+                userValueBaseCode = "COP";
                 System.out.println("Chosen COP");
                 break;
             case 6:
-                converterModel.setBaseCode("USD");
+                userValueBaseCode = "USD";
                 System.out.println("Chosen USD");
                 break;
             default:
@@ -74,32 +79,32 @@ public class ConverterServices {
 
     private void setUserValueTargetCode(){
         System.out.println("Now entry with the target code: ");
-        Scanner lectureTargetCode = new Scanner(System.in);
-        int userValueTargetCode = lectureTargetCode.nextInt();
+        Scanner lecture = new Scanner(System.in);
+        int lectureTargetCode = lecture.nextInt();
 
-        switch(userValueTargetCode){
+        switch(lectureTargetCode){
             case 1:
-                converterModel.setTargetCode("ARS");
+                userValueTargetCode = "ARS";
                 System.out.println("Chosen ARS");
                 break;
             case 2:
-                converterModel.setTargetCode("BOB");
+                userValueTargetCode = "BOB";
                 System.out.println("Chosen BOB");
                 break;
             case 3:
-                converterModel.setTargetCode("BRL");
+                userValueTargetCode = "BRL";
                 System.out.println("Chosen BRL");
                 break;
             case 4:
-                converterModel.setTargetCode("CLP");
+                userValueTargetCode = "CLP";
                 System.out.println("Chosen CLP");
                 break;
             case 5:
-                converterModel.setTargetCode("COP");
+                userValueTargetCode = "COP";
                 System.out.println("Chosen COP");
                 break;
             case 6:
-                converterModel.setTargetCode("USD");
+                userValueTargetCode = "USD";
                 System.out.println("Chosen USD");
                 break;
             default:
@@ -107,4 +112,15 @@ public class ConverterServices {
         }
     }
 
+    public String getUserValueBaseCode() {
+        return userValueBaseCode;
+    }
+
+    public String getUserValueTargetCode() {
+        return userValueTargetCode;
+    }
+
+    public Double getUserValueAmount() {
+        return userValueAmount;
+    }
 }
