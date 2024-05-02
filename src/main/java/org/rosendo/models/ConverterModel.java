@@ -13,6 +13,7 @@ public class ConverterModel {
     private Double quotation;
 
     public String baseCode;
+
     public String targetCode;
 
     public ConverterModel(String baseCode, String targetCode, Double amount) {

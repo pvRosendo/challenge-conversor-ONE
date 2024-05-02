@@ -12,18 +12,29 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 
-public class ConverterController extends ConverterServices {
+public class ConverterController {
 
-    String KEY_API = "429b8afc731718423f837e6a";
+    String KEY_API;
+
     HttpClient client;
 
+    ConverterServices converterServices = new ConverterServices();
+
+    ConverterResponse responseJson;
+
+    ConverterModel converterModel = new ConverterModel();
+
+
     public ConverterController() {
-        var converterServices = new ConverterServices();
+
         converterServices.converterFunction();
 
         client = HttpClient.newHttpClient();
+
+        defineKeyApi();
 
         URI LINK_API_CONVERTER = URI.create("https://v6.exchangerate-api.com/v6/%s/pair/%s/%s/%.0f"
                 .formatted(
@@ -47,36 +58,54 @@ public class ConverterController extends ConverterServices {
 
             String json = response.body();
 
-            ConverterModel converterModel = new ConverterModel();
-
-            ConverterResponse responseJson = gson.fromJson(json, ConverterResponse.class);
+            responseJson = gson.fromJson(json, ConverterResponse.class);
 
             converterModel.setConvertedValue(responseJson.conversionResult());
             converterModel.setQuotation(responseJson.conversionRate());
 
-            System.out.println("====================================================================");
-            System.out.printf("The value %s of %s in the current exchange of %s currency becomes: %s%n",
-                    converterServices.getUserValueAmount(),
-                    converterServices.getUserValueBaseCode(),
-                    converterServices.getUserValueTargetCode(),
-                    responseJson.conversionResult()
-            );
-            System.out.println("====================================================================");
+            printResponse();
 
-            System.out.println("\n////////////////////////////////////////////////////////////////////");
-
-            System.out.println("\n====================================================================");
-            System.out.println("For more information, the quotation and converted value is below: ");
-
-            System.out.printf("\nQuotation: %s%n", responseJson.conversionRate());
-            System.out.printf("\nConverted value: %s%n", responseJson.conversionResult());
-
-            System.out.println("====================================================================");
 
         } catch (IOException | InterruptedException e) {
             System.out.printf("Error: %s%n", e.getMessage());
             throw new RuntimeException(e);
         }
+    }
+
+    public void defineKeyApi(){
+
+        System.out.println(
+                """
+
+                ===================================================
+                Entry with the your API key:
+                ===================================================
+                """
+        );
+        Scanner lectureKeyApi = new Scanner(System.in);
+        KEY_API = lectureKeyApi.nextLine();
+    }
+
+    private void printResponse(){
+
+        System.out.println("\n====================================================================");
+        System.out.printf("The value %s of %s in the current exchange of %s currency becomes: %s%n",
+                converterServices.getUserValueAmount(),
+                converterServices.getUserValueBaseCode(),
+                converterServices.getUserValueTargetCode(),
+                responseJson.conversionResult()
+        );
+        System.out.println("====================================================================");
+
+        System.out.println("\n////////////////////////////////////////////////////////////////////");
+
+        System.out.println("\n====================================================================");
+        System.out.println("For more information, the quotation and converted value is below: ");
+
+        System.out.printf("\nQuotation: %s%n", responseJson.conversionRate());
+        System.out.printf("\nConverted value: %s%n", responseJson.conversionResult());
+
+        System.out.println("====================================================================");
     }
 
 }
