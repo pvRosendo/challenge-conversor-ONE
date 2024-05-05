@@ -28,8 +28,9 @@ public class ConverterController {
     ConverterModel converterModel = new ConverterModel();
 
 
-    public ConverterController() {
+    public ConverterController() {}
 
+    public void consumeApi(){
         converterServices.converterFunction();
 
         client = HttpClient.newHttpClient();
@@ -106,6 +107,10 @@ public class ConverterController {
         System.out.printf("\nConverted value: %s%n", responseJson.conversionResult());
 
         System.out.println("====================================================================");
+
+        for(int i = 0; i<10; i++){
+            System.out.println();
+        }
     }
 
 }

@@ -13,8 +13,6 @@ public class ConverterServices {
 
     public void converterFunction() {
 
-        //TODO: add exceptions
-
         setUserValueBaseCode();
         setUserValueTargetCode();
         setUserValueAmount();
@@ -25,7 +23,6 @@ public class ConverterServices {
                 userValueAmount
         );
     }
-
 
     private void setUserValueAmount(){
         System.out.println("\nWhat value do you want to convert?");
@@ -48,6 +45,9 @@ public class ConverterServices {
         int lectureBaseCode = lecture.nextInt();
 
         switch(lectureBaseCode){
+            case 0:
+                System.out.println("You is quitting");
+                break;
             case 1:
                 userValueBaseCode = "ARS";
                 System.out.println("Chosen ARS");
@@ -92,6 +92,9 @@ public class ConverterServices {
         int lectureTargetCode = lecture.nextInt();
 
         switch(lectureTargetCode){
+            case 0:
+                System.out.println("You is quitting");
+                break;
             case 1:
                 userValueTargetCode = "ARS";
                 System.out.println("Chosen ARS");
