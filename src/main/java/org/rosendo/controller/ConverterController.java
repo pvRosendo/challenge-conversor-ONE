@@ -107,10 +107,6 @@ public class ConverterController {
         System.out.printf("\nConverted value: %s%n", responseJson.conversionResult());
 
         System.out.println("====================================================================");
-
-        for(int i = 0; i<10; i++){
-            System.out.println();
-        }
     }
 
 }

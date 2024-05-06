@@ -9,23 +9,13 @@ public class ConverterMenu {
                 """
                 
                 
-                    ===========================
+                    =================================================================================
                           Converter Menu
-                    ===========================
+                    =================================================================================
   
-                    Choose the conversion you want to make according to the codes available below:
+                    Convert any value to any code according to the list provided: https://www.exchangerate-api.com/docs/supported-currencies
                 
-                    1 - ARS, // Argentine Peso
-                
-                    2 - BOB, // Bolivian Bolivian
-                
-                    3 - BRL, // Brazilian real
-                
-                    4 - CLP, // Chilean Peso
-                
-                    5 - COP, // Colombian Peso
-                
-                    6 - USD // US Dollar
+                    Note: There are 161 options!
                 
                     --------------------------------
                 """
@@ -37,9 +27,9 @@ public class ConverterMenu {
                 """
                 
                 
-                    ===========================
+                    =================================================================================
                           Do you want quit?
-                    ===========================
+                    =================================================================================
   
                     Choose the option you want to make according to the codes available below:
                 

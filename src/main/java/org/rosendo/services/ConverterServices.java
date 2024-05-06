@@ -14,8 +14,20 @@ public class ConverterServices {
     public void converterFunction() {
 
         setUserValueBaseCode();
+        while(userValueBaseCode.length() != 3){
+            System.out.println("Invalid base code. Only 3 characters!");
+            setUserValueBaseCode();
+        }
+
         setUserValueTargetCode();
+        while(userValueTargetCode.length() != 3){
+            System.out.println("Invalid target code. Only 3 characters!");
+            setUserValueTargetCode();
+        }
+
         setUserValueAmount();
+
+
 
         var converterModel = new ConverterModel(
                 userValueBaseCode,
@@ -36,45 +48,14 @@ public class ConverterServices {
                 """
 
                 ===================================================
-                Entry with the code base (just number is accepted!):
+                Entry with the code base (Only 3 characters! Example: USD, BRL):
                 ===================================================
                 """
         );
 
         Scanner lecture = new Scanner(System.in);
-        int lectureBaseCode = lecture.nextInt();
+        userValueBaseCode = lecture.nextLine();
 
-        switch(lectureBaseCode){
-            case 0:
-                System.out.println("You is quitting");
-                break;
-            case 1:
-                userValueBaseCode = "ARS";
-                System.out.println("Chosen ARS");
-                break;
-            case 2:
-                userValueBaseCode = "BOB";
-                System.out.println("Chosen BOB");
-                break;
-            case 3:
-                userValueBaseCode = "BRL";
-                System.out.println("Chosen BRL");
-                break;
-            case 4:
-                userValueBaseCode = "CLP";
-                System.out.println("Chosen CLP");
-                break;
-            case 5:
-                userValueBaseCode = "COP";
-                System.out.println("Chosen COP");
-                break;
-            case 6:
-                userValueBaseCode = "USD";
-                System.out.println("Chosen USD");
-                break;
-            default:
-                System.out.println("Invalid entry!");
-        }
 
     }
 
@@ -83,45 +64,14 @@ public class ConverterServices {
                 """
 
                 ===================================================
-                Entry with the target code (just number is accepted!):
+                Entry with the target code (Only 3 characters! Example: USD, BRL):
                 ===================================================
                 """
         );
 
         Scanner lecture = new Scanner(System.in);
-        int lectureTargetCode = lecture.nextInt();
+        userValueTargetCode = lecture.nextLine();
 
-        switch(lectureTargetCode){
-            case 0:
-                System.out.println("You is quitting");
-                break;
-            case 1:
-                userValueTargetCode = "ARS";
-                System.out.println("Chosen ARS");
-                break;
-            case 2:
-                userValueTargetCode = "BOB";
-                System.out.println("Chosen BOB");
-                break;
-            case 3:
-                userValueTargetCode = "BRL";
-                System.out.println("Chosen BRL");
-                break;
-            case 4:
-                userValueTargetCode = "CLP";
-                System.out.println("Chosen CLP");
-                break;
-            case 5:
-                userValueTargetCode = "COP";
-                System.out.println("Chosen COP");
-                break;
-            case 6:
-                userValueTargetCode = "USD";
-                System.out.println("Chosen USD");
-                break;
-            default:
-                System.out.println("Invalid entry!");
-        }
     }
 
     public String getUserValueBaseCode() {
