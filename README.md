@@ -7,3 +7,8 @@ participants in the ONE Program held in a partnership between [Alura](https://ww
 
 It consisted of developing a program that consumes the [API](https://www.exchangerate-api.com)  and generates a standard CLI to 
 provide currency conversion options to the user.
+
+
+## Badge
+
+![Badge-Conversor](https://github.com/pvRosendo/challenge-conversor-ONE/assets/111819809/ad71de18-b6c3-4c68-a418-bed60eda82e5)
