@@ -1,13 +1,10 @@
-# Challenge: Currency Converter
+# Challenge: Conversor de moeda
 
-## Description
+## Descrição
 
-This challenge was carried out during my participation in the "Java and Object Orientation T6 - ONE" course aimed at 
-participants in the ONE Program held in a partnership between [Alura](https://www.alura.com.br) and [Oracle](https://www.oracle.com/br/education/oracle-next-education/).
+Este desafio foi realizado durante minha participação no curso "Java e Orientação a Objetos T6 - ONE" direcionado aos participantes do Programa ONE realizado em parceria entre [Alura](https://www.alura.com.br) e [Oracle](https://www.oracle.com/br/education/oracle-next-education/).
 
-It consisted of developing a program that consumes the [API](https://www.exchangerate-api.com)  and generates a standard CLI to 
-provide currency conversion options to the user.
-
+Consistiu no desenvolvimento de um programa que consome a [API](https://www.exchangerate-api.com) e gera uma CLI padrão para fornecer opções de conversão de moeda ao usuário.
 
 ## Badge
 
